@@ -63,6 +63,8 @@ RUN touch /var/log/php/errors.log && chmod 777 /var/log/php/errors.log
 
 # Deployment steps
 # RUN composer install --optimize-autoloader --no-dev
+RUN composer install --no-ansi --no-dev --no-interaction --no-plugins --no-progress --no-scripts --optimize-autoloader
+RUN cp .env.example .env
 RUN chmod +x /var/www/docker/run.sh
 
 EXPOSE 80
