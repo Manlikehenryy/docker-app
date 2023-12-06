@@ -26,12 +26,12 @@ WORKDIR /var/www
 #     libmemcached-dev \
 #     nginx
 # # Install dependencies.
-# RUN apt-get update && apt-get install -y unzip libpq-dev libcurl4-gnutls-dev nginx libonig-dev
+RUN apt-get update && apt-get install -y unzip libpq-dev libcurl4-gnutls-dev nginx libonig-dev
 
 # #  postgresql-dev 
 
 # # Install PHP extensions.
-# RUN docker-php-ext-install mysqli pdo pdo_mysql bcmath curl opcache mbstring pdo_pgsql
+RUN docker-php-ext-install mysqli pdo pdo_mysql bcmath curl opcache mbstring pdo_pgsql
 
 # Install supervisor
 RUN apt-get install -y supervisor
