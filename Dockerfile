@@ -61,8 +61,18 @@ RUN cp docker/nginx.conf /etc/nginx/sites-enabled/default
 RUN mkdir /var/log/php
 RUN touch /var/log/php/errors.log && chmod 777 /var/log/php/errors.log
 
+
+COPY --from=composer /usr/bin/composer /usr/bin/composer
+COPY composer.json composer.json
+RUN composer -n validate --strict ; \
+    composer -n install --no-scripts --ignore-platform-reqs --no-dev
+
+
+
+COPY --from=0 vendor vendor
+
 # Deployment steps
-RUN composer install --optimize-autoloader --no-dev
+# RUN composer install --optimize-autoloader --no-dev
 RUN chmod +x /var/www/docker/run.sh
 
 EXPOSE 80
